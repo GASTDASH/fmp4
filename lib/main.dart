@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fmp4/Onboarding/onboarding_item.dart';
 import 'package:fmp4/Screens/onboarding_screen.dart';
+import 'package:fmp4/Screens/reg_screen.dart';
+import 'package:fmp4/theme.dart';
 
 void main() {
   queue.add(Item(
@@ -35,10 +37,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'GASTDASH Delivery',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          colorScheme: ColorScheme.fromSeed(seedColor: MyColors.primary),
           useMaterial3: true,
         ),
-        home: OnBoardingScreen(),
+        home: RegScreen(),
       ),
     );
   }
