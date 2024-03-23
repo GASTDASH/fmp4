@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class MyColors {
+abstract final class MyColors {
   static Color primary = Color(0xFF0560fa);
   static Color secondary = Color(0xFFEC8000);
   static Color success = Color(0xFF35B369);
@@ -23,10 +23,14 @@ class MyTextStyles {
       TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700);
   static TextStyle bodyRegular16 =
       TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400);
+  static TextStyle bodyRegular14 =
+      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400);
   static TextStyle bodyRegular12 =
       TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w400);
   static TextStyle button1 =
       TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w700);
   static TextStyle bodyMedium14 =
       TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500);
+  static TextStyle bodyMedium12 =
+      TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500);
 }

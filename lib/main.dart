@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fmp4/Onboarding/onboarding_item.dart';
-import 'package:fmp4/Screens/onboarding_screen.dart';
-import 'package:fmp4/Screens/reg_screen.dart';
+import 'package:fmp4/screens/new_password_screen.dart';
+import 'package:fmp4/screens/reg_screen.dart';
 import 'package:fmp4/theme.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
+void main() async {
   queue.add(Item(
       SvgPicture.asset("assets/onboarding/onboard1.svg"),
       "Quick Delivery At Your Doorstep",
@@ -22,10 +23,20 @@ void main() {
       "Real-time Tracking",
       "Track your packages/items from the comfort of your home till final destination"));
 
+  try {
+    await Supabase.initialize(
+        url: "https://lksuizayrfwpsmxackyy.supabase.co",
+        anonKey:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxrc3VpemF5cmZ3cHNteGFja3l5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcwODg1NDY5OSwiZXhwIjoyMDI0NDMwNjk5fQ.4QcpaeZ8y5Hhy3szy519Z7rbLfZuE-rMzH2h7KnU8GA");
+  } catch (e) {
+  } finally {}
+
   runApp(const MyApp());
 }
 
 Queue<Item> queue = Queue();
+
+final supabase = Supabase.instance.client;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

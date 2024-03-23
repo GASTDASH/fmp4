@@ -8,11 +8,15 @@ class TextBox extends StatefulWidget {
       {super.key,
       required this.titleText,
       required this.hintText,
-      this.eye = false});
+      this.eye = false,
+      this.controller,
+      this.onChanged});
 
   final String titleText;
   final String hintText;
   final bool eye;
+  final TextEditingController? controller;
+  final Function(String)? onChanged;
 
   @override
   State<TextBox> createState() => _TextBoxState();
@@ -44,6 +48,8 @@ class _TextBoxState extends State<TextBox> {
           ),
           SizedBox(height: 8.sp),
           TextFormField(
+            onChanged: widget.onChanged,
+            controller: widget.controller,
             obscureText: !_showPassword,
             decoration: InputDecoration(
                 hintText: widget.hintText,

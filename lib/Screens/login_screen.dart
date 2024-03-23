@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:fmp4/Screens/home_screen.dart';
+import 'package:fmp4/Screens/reg_screen.dart';
 import 'package:fmp4/main.dart';
-import 'package:fmp4/screens/login_screen.dart';
+import 'package:fmp4/screens/forgot_password_screen.dart';
 import 'package:fmp4/theme.dart';
 import 'package:fmp4/Widgets/text_box.dart';
 
-class RegScreen extends StatefulWidget {
-  const RegScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<RegScreen> createState() => _RegScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _RegScreenState extends State<RegScreen> {
-  final _fullnameController = TextEditingController();
-  final _phoneController = TextEditingController();
+class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _passwordConfirmController = TextEditingController();
-
-  bool _privacyChecked = false;
 
   bool _isButtonEnabled = false;
 
@@ -28,20 +25,13 @@ class _RegScreenState extends State<RegScreen> {
   void dispose() {
     super.dispose();
 
-    _fullnameController.dispose();
-    _phoneController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
-    _passwordConfirmController.dispose();
   }
 
   void _checkButton(String string) {
     if (_emailController.text.length > 0 &&
-        _fullnameController.text.length > 0 &&
-        _phoneController.text.length > 0 &&
-        _passwordController.text.length > 0 &&
-        _passwordConfirmController.text.length > 0 &&
-        _privacyChecked) {
+        _passwordController.text.length > 0) {
       setState(() {
         _isButtonEnabled = true;
       });
@@ -52,25 +42,15 @@ class _RegScreenState extends State<RegScreen> {
     }
   }
 
-  void _singUp() async {
+  void _singIn() async {
     try {
       setState(() {
         _isButtonEnabled = false;
       });
-      await supabase.auth.signUp(
-          password: _passwordController.text, email: _emailController.text);
-      print("================ Registration successful");
       await supabase.auth.signInWithPassword(
-        password: _passwordController.text,
-        email: _emailController.text,
-      );
-      String _id = supabase.auth.currentSession!.user.id;
-      await supabase.auth.signOut();
-      await supabase
-          .from("profiles")
-          .insert({"name": _fullnameController.text, "id": _id});
+          password: _passwordController.text, email: _emailController.text);
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => LoginScreen()));
+          context, MaterialPageRoute(builder: (context) => HomeScreen()));
     } catch (e) {
       print(e.toString());
     } finally {
@@ -90,35 +70,23 @@ class _RegScreenState extends State<RegScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 24.sp),
+              SizedBox(height: 155.sp),
               Text(
-                "Create an account",
+                "Welcome Back",
                 style: MyTextStyles.headingMedium24
                     .copyWith(color: MyColors.textLight),
               ),
               SizedBox(height: 8.sp),
               Text(
-                "Complete the sign up process to get started",
+                "Fill in your email and password to continue",
                 style: MyTextStyles.bodyMedium14
                     .copyWith(color: MyColors.grayDark),
               ),
               //
               //
-              SizedBox(height: 21.sp),
+              SizedBox(height: 8.sp),
               //
               //
-              TextBox(
-                titleText: 'Full name',
-                hintText: 'Ivanov Ivan',
-                controller: _fullnameController,
-                onChanged: _checkButton,
-              ),
-              TextBox(
-                titleText: 'Phone Number',
-                hintText: '+7(999)999-99-99',
-                controller: _phoneController,
-                onChanged: _checkButton,
-              ),
               TextBox(
                 titleText: 'Email Address',
                 hintText: '***********@mail.com',
@@ -132,58 +100,55 @@ class _RegScreenState extends State<RegScreen> {
                 eye: true,
                 onChanged: _checkButton,
               ),
-              TextBox(
-                titleText: 'Confirm Password',
-                hintText: '**********',
-                controller: _passwordConfirmController,
-                eye: true,
-                onChanged: _checkButton,
-              ),
               //
               //
-              SizedBox(height: 25.sp),
+              SizedBox(height: 5.sp),
               //
               //
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Checkbox(
-                      side: BorderSide(color: MyColors.primary),
-                      value: _privacyChecked,
-                      onChanged: (value) {
-                        setState(() {
-                          _privacyChecked = !_privacyChecked;
-                        });
-                        _checkButton("");
-                      }),
-                  SizedBox(width: 11.sp),
-                  SizedBox(
-                    width: 271.sp,
-                    child: InkWell(
-                      onTap: () {},
-                      child: RichText(
-                          textAlign: TextAlign.center,
-                          text: TextSpan(
-                              text: "By ticking this box, you agree to our ",
-                              style: MyTextStyles.bodyRegular12
-                                  .copyWith(color: MyColors.grayDark),
-                              children: [
-                                TextSpan(
-                                  text:
-                                      "Terms and conditions and private policy",
-                                  style: MyTextStyles.bodyRegular12
-                                      .copyWith(color: MyColors.warning),
-                                )
-                              ])),
+                  Row(
+                    children: [
+                      Checkbox(
+                        value: false,
+                        side: BorderSide(color: MyColors.grayDark),
+                        onChanged: (value) {},
+                      ),
+                      Text(
+                        "Remember password",
+                        style: MyTextStyles.bodyMedium12
+                            .copyWith(color: MyColors.grayDark),
+                      ),
+                    ],
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ForgotPasswordScreen()));
+                    },
+                    child: Text(
+                      "Forgot Password?",
+                      style: MyTextStyles.bodyMedium12.copyWith(
+                        color: MyColors.primary,
+                      ),
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 40.sp),
+              //
+              //
+              SizedBox(height: 50.sp),
+              //
+              //
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: 46.sp,
                 child: FilledButton(
-                    onPressed: _isButtonEnabled ? _singUp : null,
+                    onPressed: _isButtonEnabled ? _singIn : null,
                     style: FilledButton.styleFrom(
                       disabledBackgroundColor: MyColors.grayDark,
                       backgroundColor: MyColors.primary,
@@ -192,7 +157,7 @@ class _RegScreenState extends State<RegScreen> {
                       ),
                     ),
                     child: Text(
-                      "Sign Up",
+                      "Log in",
                       style: MyTextStyles.subtitleBold16
                           .copyWith(color: Colors.white),
                     )),
@@ -212,10 +177,10 @@ class _RegScreenState extends State<RegScreen> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => LoginScreen()));
+                                builder: (context) => RegScreen()));
                       },
                       child: Text(
-                        "Sign in",
+                        "Sign Up",
                         style: MyTextStyles.bodyMedium14.copyWith(
                           color: MyColors.primary,
                         ),
@@ -225,7 +190,7 @@ class _RegScreenState extends State<RegScreen> {
               SizedBox(height: 18.sp),
               Center(
                 child: Text(
-                  "or sign in using",
+                  "or log in using",
                   style: MyTextStyles.bodyRegular14.copyWith(
                     color: MyColors.grayDark,
                   ),
