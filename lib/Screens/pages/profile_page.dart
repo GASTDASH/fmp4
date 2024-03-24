@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fmp4/main.dart';
 import 'package:fmp4/screens/add_payment_method_screen.dart';
+import 'package:fmp4/screens/login_screen.dart';
 import 'package:fmp4/theme.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -14,6 +15,15 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  void _logout() async {
+    try {
+      await supabase.auth.signOut();
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => LoginScreen()));
+    } catch (e) {
+    } finally {}
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,7 +77,8 @@ class _ProfilePageState extends State<ProfilePage> {
               SizedBox(height: 8.sp),
               settingsCard(
                   title: "Log Out",
-                  iconAsset: "assets/icons/linear/logout.svg"),
+                  iconAsset: "assets/icons/linear/logout.svg",
+                  onTap: _logout),
             ],
           ),
         ),

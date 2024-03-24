@@ -74,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       );
-    } on AuthException catch (e) {
+    } on AuthException catch (_) {
       showDialog(
         context: context,
         builder: (BuildContext context) => Dialog(

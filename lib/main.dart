@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fmp4/models/onboarding_item.dart';
 import 'package:fmp4/screens/home_screen.dart';
 import 'package:fmp4/screens/reg_screen.dart';
+import 'package:fmp4/screens/send_a_package_screen.dart';
 import 'package:fmp4/theme.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -56,7 +57,7 @@ class MyApp extends StatelessWidget {
               seedColor: MyColors.primary, background: Colors.white),
           useMaterial3: true,
         ),
-        home: RegScreen(),
+        home: SendAPackageScreen(),
       ),
     );
   }
