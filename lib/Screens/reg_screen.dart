@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fmp4/main.dart';
 import 'package:fmp4/screens/login_screen.dart';
+import 'package:fmp4/screens/privacy_screen.dart';
 import 'package:fmp4/theme.dart';
 import 'package:fmp4/Widgets/text_box.dart';
 
@@ -160,7 +161,12 @@ class _RegScreenState extends State<RegScreen> {
                     SizedBox(
                       width: 271.sp,
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PrivacyScreen()));
+                        },
                         child: RichText(
                             textAlign: TextAlign.center,
                             text: TextSpan(
