@@ -1,8 +1,8 @@
 import 'dart:collection';
 
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fmp4/Onboarding/onboarding.dart';
-import 'package:fmp4/Onboarding/onboarding_item.dart';
+import 'package:fmp4/models/onboarding.dart';
+import 'package:fmp4/models/onboarding_item.dart';
 import 'package:test/test.dart';
 
 void main() {

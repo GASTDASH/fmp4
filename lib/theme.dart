@@ -21,6 +21,8 @@ class MyTextStyles {
       TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w500);
   static TextStyle subtitleBold16 =
       TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700);
+  static TextStyle subtitleMedium16 =
+      TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500);
   static TextStyle bodyRegular16 =
       TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400);
   static TextStyle bodyRegular14 =

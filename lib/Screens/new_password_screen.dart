@@ -40,76 +40,78 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.sp),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 155.sp),
-              Text(
-                "Welcome Back",
-                style: MyTextStyles.headingMedium24
-                    .copyWith(color: MyColors.textLight),
-              ),
-              SizedBox(height: 8.sp),
-              Text(
-                "Fill in your email and password to continue",
-                style: MyTextStyles.bodyMedium14
-                    .copyWith(color: MyColors.grayDark),
-              ),
-              //
-              //
-              SizedBox(height: 8.sp),
-              //
-              //
-              TextBox(
-                titleText: 'Password',
-                hintText: '***********@mail.com',
-                controller: _passwordController,
-                eye: true,
-                onChanged: _checkButton,
-              ),
-              TextBox(
-                titleText: 'Confirm Password',
-                hintText: '**********',
-                controller: _passwordConfirmController,
-                eye: true,
-                onChanged: _checkButton,
-              ),
-              //
-              //
-              SizedBox(height: 50.sp),
-              //
-              //
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: 46.sp,
-                child: FilledButton(
-                    onPressed: _isButtonEnabled
-                        ? () {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HomeScreen()));
-                          }
-                        : null,
-                    style: FilledButton.styleFrom(
-                      disabledBackgroundColor: MyColors.grayDark,
-                      backgroundColor: MyColors.primary,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4),
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.sp),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 155.sp),
+                Text(
+                  "Welcome Back",
+                  style: MyTextStyles.headingMedium24
+                      .copyWith(color: MyColors.textLight),
+                ),
+                SizedBox(height: 8.sp),
+                Text(
+                  "Fill in your email and password to continue",
+                  style: MyTextStyles.bodyMedium14
+                      .copyWith(color: MyColors.grayDark),
+                ),
+                //
+                //
+                SizedBox(height: 8.sp),
+                //
+                //
+                TextBox(
+                  titleText: 'Password',
+                  hintText: '***********@mail.com',
+                  controller: _passwordController,
+                  eye: true,
+                  onChanged: _checkButton,
+                ),
+                TextBox(
+                  titleText: 'Confirm Password',
+                  hintText: '**********',
+                  controller: _passwordConfirmController,
+                  eye: true,
+                  onChanged: _checkButton,
+                ),
+                //
+                //
+                SizedBox(height: 50.sp),
+                //
+                //
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: 46.sp,
+                  child: FilledButton(
+                      onPressed: _isButtonEnabled
+                          ? () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => HomeScreen()));
+                            }
+                          : null,
+                      style: FilledButton.styleFrom(
+                        disabledBackgroundColor: MyColors.grayDark,
+                        backgroundColor: MyColors.primary,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
                       ),
-                    ),
-                    child: Text(
-                      "Log in",
-                      style: MyTextStyles.subtitleBold16
-                          .copyWith(color: Colors.white),
-                    )),
-              ),
-            ],
+                      child: Text(
+                        "Log in",
+                        style: MyTextStyles.subtitleBold16
+                            .copyWith(color: Colors.white),
+                      )),
+                ),
+              ],
+            ),
           ),
         ),
       ),

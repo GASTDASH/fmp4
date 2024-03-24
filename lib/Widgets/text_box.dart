@@ -47,34 +47,37 @@ class _TextBoxState extends State<TextBox> {
             ),
           ),
           SizedBox(height: 8.sp),
-          TextFormField(
-            onChanged: widget.onChanged,
-            controller: widget.controller,
-            obscureText: !_showPassword,
-            decoration: InputDecoration(
-                hintText: widget.hintText,
-                hintStyle: MyTextStyles.bodyMedium14
-                    .copyWith(color: MyColors.grayLight),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(4),
-                  borderSide: BorderSide(color: MyColors.grayDark),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(4),
-                  borderSide: BorderSide(color: MyColors.grayDark),
-                ),
-                suffixIcon: widget.eye
-                    ? IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _showPassword = !_showPassword;
-                          });
-                        },
-                        icon: SvgPicture.asset(!_showPassword
-                            ? "assets/icons/linear/eye-slash.svg"
-                            : "assets/icons/linear/eye.svg"),
-                      )
-                    : null),
+          SizedBox(
+            height: 44.sp,
+            child: TextFormField(
+              onChanged: widget.onChanged,
+              controller: widget.controller,
+              obscureText: !_showPassword,
+              decoration: InputDecoration(
+                  hintText: widget.hintText,
+                  hintStyle: MyTextStyles.bodyMedium14
+                      .copyWith(color: MyColors.grayLight),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(4),
+                    borderSide: BorderSide(color: MyColors.grayDark),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(4),
+                    borderSide: BorderSide(color: MyColors.grayDark),
+                  ),
+                  suffixIcon: widget.eye
+                      ? IconButton(
+                          onPressed: () {
+                            setState(() {
+                              _showPassword = !_showPassword;
+                            });
+                          },
+                          icon: SvgPicture.asset(!_showPassword
+                              ? "assets/icons/linear/eye-slash.svg"
+                              : "assets/icons/linear/eye.svg"),
+                        )
+                      : null),
+            ),
           ),
         ],
       ),

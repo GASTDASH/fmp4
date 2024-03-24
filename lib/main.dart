@@ -3,8 +3,8 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fmp4/Onboarding/onboarding_item.dart';
-import 'package:fmp4/screens/new_password_screen.dart';
+import 'package:fmp4/models/onboarding_item.dart';
+import 'package:fmp4/screens/home_screen.dart';
 import 'package:fmp4/screens/reg_screen.dart';
 import 'package:fmp4/theme.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -38,6 +38,9 @@ Queue<Item> queue = Queue();
 
 final supabase = Supabase.instance.client;
 
+bool showBalance = true;
+bool darkMode = false;
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -46,9 +49,11 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: Size(390, 844),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'GASTDASH Delivery',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: MyColors.primary),
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: MyColors.primary, background: Colors.white),
           useMaterial3: true,
         ),
         home: RegScreen(),

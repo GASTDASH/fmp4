@@ -63,89 +63,91 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.sp),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 155.sp),
-              Text(
-                "Forgot Password",
-                style: MyTextStyles.headingMedium24
-                    .copyWith(color: MyColors.textLight),
-              ),
-              SizedBox(height: 8.sp),
-              Text(
-                "Enter your email address",
-                style: MyTextStyles.bodyMedium14
-                    .copyWith(color: MyColors.grayDark),
-              ),
-              //
-              //
-              SizedBox(height: 8.sp),
-              //
-              //
-              TextBox(
-                titleText: 'Email Address',
-                hintText: '***********@mail.com',
-                controller: _emailController,
-                onChanged: _checkButton,
-              ),
-              //
-              //
-              SizedBox(height: 5.sp),
-              //
-              //
-              SizedBox(height: 50.sp),
-              //
-              //
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: 46.sp,
-                child: FilledButton(
-                    onPressed: _isButtonEnabled ? _sendOTP : null,
-                    style: FilledButton.styleFrom(
-                      disabledBackgroundColor: MyColors.grayDark,
-                      backgroundColor: MyColors.primary,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4),
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.sp),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 155.sp),
+                Text(
+                  "Forgot Password",
+                  style: MyTextStyles.headingMedium24
+                      .copyWith(color: MyColors.textLight),
+                ),
+                SizedBox(height: 8.sp),
+                Text(
+                  "Enter your email address",
+                  style: MyTextStyles.bodyMedium14
+                      .copyWith(color: MyColors.grayDark),
+                ),
+                //
+                //
+                SizedBox(height: 8.sp),
+                //
+                //
+                TextBox(
+                  titleText: 'Email Address',
+                  hintText: '***********@mail.com',
+                  controller: _emailController,
+                  onChanged: _checkButton,
+                ),
+                //
+                //
+                SizedBox(height: 5.sp),
+                //
+                //
+                SizedBox(height: 50.sp),
+                //
+                //
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: 46.sp,
+                  child: FilledButton(
+                      onPressed: _isButtonEnabled ? _sendOTP : null,
+                      style: FilledButton.styleFrom(
+                        disabledBackgroundColor: MyColors.grayDark,
+                        backgroundColor: MyColors.primary,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                      ),
+                      child: Text(
+                        "Send OTP",
+                        style: MyTextStyles.subtitleBold16
+                            .copyWith(color: Colors.white),
+                      )),
+                ),
+                SizedBox(height: 20.sp),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Remember password? Back to",
+                      style: MyTextStyles.bodyRegular14.copyWith(
+                        color: MyColors.grayDark,
                       ),
                     ),
-                    child: Text(
-                      "Send OTP",
-                      style: MyTextStyles.subtitleBold16
-                          .copyWith(color: Colors.white),
-                    )),
-              ),
-              SizedBox(height: 20.sp),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Remember password? Back to",
-                    style: MyTextStyles.bodyRegular14.copyWith(
-                      color: MyColors.grayDark,
-                    ),
-                  ),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginScreen()));
-                      },
-                      child: Text(
-                        "Sign in",
-                        style: MyTextStyles.bodyMedium14.copyWith(
-                          color: MyColors.primary,
-                        ),
-                      ))
-                ],
-              ),
-            ],
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginScreen()));
+                        },
+                        child: Text(
+                          "Sign in",
+                          style: MyTextStyles.bodyMedium14.copyWith(
+                            color: MyColors.primary,
+                          ),
+                        ))
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
