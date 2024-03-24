@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fmp4/models/onboarding_item.dart';
+import 'package:fmp4/models/profile.dart';
+import 'package:fmp4/screens/add_payment_method_screen.dart';
 import 'package:fmp4/screens/home_screen.dart';
-import 'package:fmp4/screens/reg_screen.dart';
-import 'package:fmp4/screens/send_a_package_screen.dart';
 import 'package:fmp4/theme.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -42,6 +42,8 @@ final supabase = Supabase.instance.client;
 bool showBalance = true;
 bool darkMode = false;
 
+Profile myProfile = Profile();
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -57,7 +59,7 @@ class MyApp extends StatelessWidget {
               seedColor: MyColors.primary, background: Colors.white),
           useMaterial3: true,
         ),
-        home: SendAPackageScreen(),
+        home: HomeScreen(),
       ),
     );
   }

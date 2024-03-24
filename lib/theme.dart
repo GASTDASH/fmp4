@@ -7,7 +7,7 @@ abstract final class MyColors {
   static Color success = Color(0xFF35B369);
   static Color warning = Color(0xFFEBBC2E);
   static Color info = Color(0xFF2f80ed);
-  static Color error = Color(0xFFed3a33a);
+  static Color error = Color(0xFFed3a3a);
   static Color textLight = Color(0xFF3a3a3a);
   static Color textDark = Color(0xFF141414);
   static Color grayLight = Color(0xFFcfcfcf);
@@ -19,6 +19,8 @@ class MyTextStyles {
       TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w700);
   static TextStyle headingMedium24 =
       TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w500);
+  static TextStyle headingMedium20 =
+      TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500);
   static TextStyle subtitleBold16 =
       TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700);
   static TextStyle subtitleMedium16 =
