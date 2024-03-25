@@ -5,7 +5,7 @@ import 'package:fmp4/main.dart';
 import 'package:fmp4/screens/login_screen.dart';
 import 'package:fmp4/screens/privacy_screen.dart';
 import 'package:fmp4/theme.dart';
-import 'package:fmp4/Widgets/text_box.dart';
+import 'package:fmp4/widgets/text_box.dart';
 
 class RegScreen extends StatefulWidget {
   const RegScreen({super.key});

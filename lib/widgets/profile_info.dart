@@ -37,7 +37,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
               "Hello ${myProfile.fullname}",
               style: TextStyle(
                   color: MyColors.textLight,
-                  fontSize: 16,
+                  fontSize: 16.sp,
                   fontWeight: FontWeight.w500),
             ),
             Text(

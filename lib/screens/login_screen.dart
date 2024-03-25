@@ -3,13 +3,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fmp4/Screens/home_screen.dart';
-import 'package:fmp4/Screens/reg_screen.dart';
+import 'package:fmp4/screens/home_screen.dart';
+import 'package:fmp4/screens/reg_screen.dart';
 import 'package:fmp4/main.dart';
 import 'package:fmp4/screens/forgot_password_screen.dart';
 import 'package:fmp4/screens/loading_screen.dart';
 import 'package:fmp4/theme.dart';
-import 'package:fmp4/Widgets/text_box.dart';
+import 'package:fmp4/widgets/text_box.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class LoginScreen extends StatefulWidget {

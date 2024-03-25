@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class TrackPage extends StatefulWidget {
   const TrackPage({super.key});
@@ -14,13 +13,13 @@ class _TrackPageState extends State<TrackPage> {
     return Scaffold(
       appBar: AppBar(title: const Text('YandexMap examples')),
       body: Column(
-        children: <Widget>[
-          Expanded(
-            child: Container(
-                padding: const EdgeInsets.all(8), child: const YandexMap()),
+          // children: <Widget>[
+          //   Expanded(
+          //     child: Container(
+          //         padding: const EdgeInsets.all(8), child: const YandexMap()),
+          //   ),
+          // ],
           ),
-        ],
-      ),
     );
   }
 }

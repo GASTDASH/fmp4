@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fmp4/Screens/home_screen.dart';
+import 'package:fmp4/screens/home_screen.dart';
 import 'package:fmp4/screens/send_a_package_receipt_screen.dart';
 import 'package:fmp4/theme.dart';
 import 'package:fmp4/widgets/appbar.dart';

@@ -1,17 +1,20 @@
 import 'dart:collection';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fmp4/models/onboarding_item.dart';
 import 'package:fmp4/models/profile.dart';
-import 'package:fmp4/screens/add_payment_method_screen.dart';
-import 'package:fmp4/screens/home_screen.dart';
+import 'package:fmp4/screens/onboarding_screen.dart';
 import 'package:fmp4/screens/reg_screen.dart';
 import 'package:fmp4/theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
+  await ScreenUtil.ensureScreenSize();
+
   queue.add(Item(
       SvgPicture.asset("assets/onboarding/onboard1.svg"),
       "Quick Delivery At Your Doorstep",
@@ -60,8 +63,27 @@ class MyApp extends StatelessWidget {
               seedColor: MyColors.primary, background: Colors.white),
           useMaterial3: true,
         ),
-        home: RegScreen(),
+        home: OnBoardingScreen(),
       ),
     );
+  }
+}
+
+class QueueManager {
+  final String key = "queue";
+
+  Future<void> setQueue(queue) async {
+    String queueJson = jsonEncode(queue.toJson());
+
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(key, queueJson);
+  }
+
+  Future<Queue> getQueue() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String queueJson = prefs.getString(key)!;
+
+    Queue queue = jsonDecode(queueJson);
+    return queue;
   }
 }
