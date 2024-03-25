@@ -13,6 +13,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
+  // Initializing Supabase Data Base
+  try {
+    await Supabase.initialize(
+        url: "https://lksuizayrfwpsmxackyy.supabase.co",
+        anonKey:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxrc3VpemF5cmZ3cHNteGFja3l5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcwODg1NDY5OSwiZXhwIjoyMDI0NDMwNjk5fQ.4QcpaeZ8y5Hhy3szy519Z7rbLfZuE-rMzH2h7KnU8GA");
+  } catch (e) {
+    // If error
+  }
+
+  // For no bug with Texts
   await ScreenUtil.ensureScreenSize();
 
   // Init preferences
@@ -45,29 +56,20 @@ void main() async {
       itemsJson.add(jsonEncode(item.toJson()));
     }
     prefs.setStringList("items", itemsJson);
+
+    runApp(const MyApp(home: OnBoardingScreen()));
   }
   // If queue end
   else if (_itemsJson.isEmpty) {
-    runApp(const MyApp());
+    runApp(const MyApp(home: RegScreen()));
   }
   // If queue have items
   else {
     for (String _itemJson in _itemsJson) {
       queue.add(Item.fromJson(jsonDecode(_itemJson)));
     }
+    runApp(const MyApp(home: OnBoardingScreen()));
   }
-
-  // Initializing Supabase Data Base
-  try {
-    await Supabase.initialize(
-        url: "https://lksuizayrfwpsmxackyy.supabase.co",
-        anonKey:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxrc3VpemF5cmZ3cHNteGFja3l5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcwODg1NDY5OSwiZXhwIjoyMDI0NDMwNjk5fQ.4QcpaeZ8y5Hhy3szy519Z7rbLfZuE-rMzH2h7KnU8GA");
-  } catch (e) {
-    // If error
-  }
-
-  runApp(const MyApp());
 }
 
 Queue<Item> queue = Queue();
@@ -80,7 +82,9 @@ bool darkMode = false;
 Profile myProfile = Profile();
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required this.home});
+
+  final Widget home;
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +98,7 @@ class MyApp extends StatelessWidget {
               seedColor: MyColors.primary, background: Colors.white),
           useMaterial3: true,
         ),
-        home: OnBoardingScreen(),
+        home: this.home,
       ),
     );
   }

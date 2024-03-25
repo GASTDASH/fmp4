@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fmp4/main.dart';
 import 'package:fmp4/models/queue.dart';
+import 'package:fmp4/screens/reg_screen.dart';
 import 'package:fmp4/theme.dart';
 
 class OnBoardingScreen extends StatefulWidget {
@@ -66,7 +68,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => Holder()));
+                                        builder: (context) => RegScreen()));
                               },
                               child: Text(
                                 "Sign Up",
@@ -97,9 +99,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               width: 100.sp,
                               child: OutlinedButton(
                                 onPressed: () {
-                                  setState(() {
-                                    obQueue.skip();
-                                  });
+                                  obQueue.skip();
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => RegScreen()));
+                                  // print(queue.isEmpty);
                                 },
                                 child: Text(
                                   "Skip",
