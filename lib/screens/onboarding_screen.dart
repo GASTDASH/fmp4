@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fmp4/models/onboarding.dart';
-import 'package:fmp4/main.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fmp4/models/queue.dart';
 import 'package:fmp4/theme.dart';
 
 class OnBoardingScreen extends StatefulWidget {
@@ -12,14 +12,7 @@ class OnBoardingScreen extends StatefulWidget {
 }
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
-  late OB ob;
-
-  @override
-  void initState() {
-    super.initState();
-
-    ob = OB(queue);
-  }
+  OBQueue obQueue = OBQueue();
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +25,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               SizedBox(
                 height: MediaQuery.of(context).size.width,
                 width: MediaQuery.of(context).size.width,
-                child: ob.getImage(),
+                child: SvgPicture.asset(obQueue.getImage()),
               ),
               SizedBox(height: 20.sp),
               SizedBox(
                 width: 287.sp,
                 child: Text(
-                  ob.getTitle(),
+                  obQueue.getTitle(),
                   textAlign: TextAlign.center,
                   style: MyTextStyles.headingBold24.copyWith(
                     color: MyColors.primary,
@@ -49,7 +42,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               SizedBox(
                 width: 311.sp,
                 child: Text(
-                  ob.getSubtitle(),
+                  obQueue.getSubtitle()!,
                   textAlign: TextAlign.center,
                   style: MyTextStyles.bodyRegular16.copyWith(
                     color: MyColors.textLight,
@@ -57,7 +50,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ),
               ),
               SizedBox(height: 30.sp),
-              ob.isLast()
+              obQueue.isLast()
                   ? Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -69,6 +62,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                             height: 46.sp,
                             child: FilledButton(
                               onPressed: () {
+                                obQueue.skip();
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
@@ -104,7 +98,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               child: OutlinedButton(
                                 onPressed: () {
                                   setState(() {
-                                    ob.skip();
+                                    obQueue.skip();
                                   });
                                 },
                                 child: Text(
@@ -133,7 +127,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               child: FilledButton(
                                 onPressed: () {
                                   setState(() {
-                                    ob.next();
+                                    obQueue.next();
                                   });
                                 },
                                 child: Text(
