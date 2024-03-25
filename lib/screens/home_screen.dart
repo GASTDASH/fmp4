@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fmp4/models/track_page.dart';
+import 'package:fmp4/screens/pages/track_page.dart';
 import 'package:fmp4/screens/pages/home_page.dart';
 import 'package:fmp4/screens/pages/profile_page.dart';
 import 'package:fmp4/screens/pages/wallet_page.dart';
